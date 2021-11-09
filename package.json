@@ -1,0 +1,48 @@
+{
+  "name": "spaceship",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "yarn lint:js",
+    "test": "jest",
+    "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
+    "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "5.13.6",
+    "@nuxtjs/firebase": "8.0.0",
+    "@nuxtjs/pwa": "3.3.5",
+    "core-js": "3.19.1",
+    "firebase": "9.4.0",
+    "firebaseui": "6.0.0",
+    "is_js": "0.9.0",
+    "nuxt": "2.15.8"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "7.16.0",
+    "@nuxt/types": "2.15.8",
+    "@nuxt/typescript-build": "2.1.0",
+    "@nuxtjs/eslint-config-typescript": "7.0.2",
+    "@nuxtjs/eslint-module": "3.0.2",
+    "@nuxtjs/vuetify": "1.12.1",
+    "@vue/test-utils": "1.2.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "27.3.1",
+    "cross-env": "7.0.3",
+    "eslint": "8.2.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-nuxt": "3.0.0",
+    "eslint-plugin-vue": "8.0.3",
+    "jest": "27.3.1",
+    "prettier": "2.4.1",
+    "push-dir": "0.4.1",
+    "ts-jest": "27.0.7",
+    "vue-jest": "3.0.7"
+  }
+}
