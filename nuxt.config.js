@@ -87,14 +87,13 @@ export default {
    */
   firebase: {
     config: {
-      apiKey: 'AIzaSyC3qpcRaVJVT63YMfIMgNJKRsmtPmEB6VM',
-      authDomain: 'bento-vince.firebaseapp.com',
-      databaseURL: 'https://bento-vince.firebaseio.com',
-      projectId: 'bento-vince',
-      storageBucket: 'bento-vince.appspot.com',
-      messagingSenderId: '419042376123',
-      appId: '1:419042376123:web:f2a4223fcbff6f078b6c9e',
-      measurementId: 'G-VL64YPQL57',
+      apiKey: "AIzaSyD-dBHIbaGkkmT8KsQn-ntG08IiLOte6Qw",
+      authDomain: "tokyo-terrasse.firebaseapp.com",
+      projectId: "tokyo-terrasse",
+      storageBucket: "tokyo-terrasse.appspot.com",
+      messagingSenderId: "599190084579",
+      appId: "1:599190084579:web:9f2d7e78784af520bc5ed6",
+      measurementId: "G-TKZTHD6LY1",
     },
     services: {
       auth: {
