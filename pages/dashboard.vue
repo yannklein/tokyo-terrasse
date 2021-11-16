@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     terraces () {
-      return this.$store.state.terraces
+      return this.$store.state.terraces.terraces
     }
   },
 }

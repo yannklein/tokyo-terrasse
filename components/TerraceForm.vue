@@ -23,11 +23,11 @@
         rules="required"
       >
         <v-select
-          v-model="select"
+          v-model="category"
           :items="categories"
           :error-messages="errors"
           label="Category"
-          data-vv-name="select"
+          data-vv-name="category"
           required
         ></v-select>
       </validation-provider>
@@ -39,7 +39,7 @@
         }"
       >
         <v-text-field
-          v-model="phoneNumber"
+          v-model="address"
           :error-messages="errors"
           label="Address"
           required
@@ -51,7 +51,7 @@
         rules="required"
       >
         <v-text-field
-          v-model="name"
+          v-model="website"
           :error-messages="errors"
           label="Website"
           hint="www.example.com/page"
@@ -64,7 +64,6 @@
         name="phoneNumber"
         :rules="{
           required: true,
-          digits: 7,
           regex: '^[+](71|72|74|76|81|82|84|85|86|87|88|89)\\d{10}$'
         }"
       >
@@ -144,8 +143,10 @@
     data: () => ({
       name: '',
       phoneNumber: '',
+      address: '',
+      website: '',
       email: '',
-      select: null,
+      category: null,
       categories: [
         'Restaurant',
         'Bar',
@@ -159,7 +160,17 @@
 
     methods: {
       submit () {
+        const payload = {
+          name: this.name || "",
+          category: this.category.toLowerCase() || "",
+          address: this.address || "",
+          website: this.website || "",
+          number: this.phoneNumber || "",
+          description: this.description || "",
+        }
         this.$refs.observer.validate()
+        console.log(payload)
+        this.$store.dispatch('terraces/saveTerrace', payload)
       },
       clear () {
         this.name = ''
