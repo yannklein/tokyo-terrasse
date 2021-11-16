@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="{ name: 'terrace-id', params: { id: id }}" >
+  <NuxtLink v-if="id !== ''" :to="{ name: 'terrace-id', params: { id: id }}" >
     <div>{{name}}</div>
   </NuxtLink>
 </template>

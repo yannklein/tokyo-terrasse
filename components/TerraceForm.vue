@@ -1,63 +1,151 @@
 <template>
-  <v-form v-model="valid">
-    <v-container>
-      <v-text-field
-        label="Venue name"
-        required
-      ></v-text-field>
-      <v-select
-        :items="categories"
-        label="Category"
-        data-vv-name="select"
-        required
-      ></v-select>
+  <validation-observer
+    ref="observer"
+    v-slot="{ invalid }"
+  >
+    <form @submit.prevent="submit">
+      <validation-provider
+        v-slot="{ errors }"
+        name="Venue name"
+        rules="required|max:20"
+      >
+        <v-text-field
+          v-model="name"
+          :counter="10"
+          :error-messages="errors"
+          label="Name"
+          required
+        ></v-text-field>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
+        name="category"
+        rules="required"
+      >
+        <v-select
+          v-model="select"
+          :items="categories"
+          :error-messages="errors"
+          label="Category"
+          data-vv-name="select"
+          required
+        ></v-select>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
+        name="address"
+        :rules="{
+          required: true,
+        }"
+      >
+        <v-text-field
+          v-model="phoneNumber"
+          :error-messages="errors"
+          label="Address"
+          required
+        ></v-text-field>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
+        name="website"
+        rules="required"
+      >
+        <v-text-field
+          v-model="name"
+          :error-messages="errors"
+          label="Website"
+          hint="www.example.com/page"
+          persistent-hint
+          required
+        ></v-text-field>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
+        name="phoneNumber"
+        :rules="{
+          required: true,
+          digits: 7,
+          regex: '^[+](71|72|74|76|81|82|84|85|86|87|88|89)\\d{10}$'
+        }"
+      >
+        <v-text-field
+          v-model="phoneNumber"
+          :counter="7"
+          :error-messages="errors"
+          label="Phone Number"
+          hint="+819012342345"
+          persistent-hint
+          required
+        ></v-text-field>
+      </validation-provider>
 
-      <v-text-field
-        v-model="address"
-        :rules="addressRules"
-        label="Address"
-        required
-      ></v-text-field>
-
-      <v-text-field
-        label="Website"
-        hint="www.example.com/page"
-        persistent-hint
-        required
-      ></v-text-field>
-
-      <v-text-field
-        :rules="nameRules"
-        label="Phone"
-        hint="+81 90 1234 5678"
-        persistent-hint
-        required
-      ></v-text-field>
-
-      <v-textarea
+      <validation-provider
+        v-slot="{ errors }"
+        name="description"
+        rules="required|max:300"
+      >
+        <v-textarea
         label="Description"
+        :error-messages="errors"
         required
       ></v-textarea>
+      </validation-provider>
 
       <v-btn
         class="mr-4"
-        @click="submit"
+        type="submit"
+        :disabled="invalid"
       >
         submit
       </v-btn>
       <v-btn @click="clear">
         clear
       </v-btn>
-    </v-container>
-  </v-form>
+    </form>
+  </validation-observer>
 </template>
 
 <script>
+  import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
+  import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+
+  setInteractionMode('eager')
+
+  extend('digits', {
+    ...digits,
+    message: '{_field_} needs to be {length} digits. ({_value_})',
+  })
+
+  extend('required', {
+    ...required,
+    message: '{_field_} can not be empty',
+  })
+
+  extend('max', {
+    ...max,
+    message: '{_field_} may not be greater than {length} characters',
+  })
+
+  extend('regex', {
+    ...regex,
+    message: '{_field_} {_value_} does not match {regex}',
+  })
+
+  extend('email', {
+    ...email,
+    message: 'Email must be valid',
+  })
+
   export default {
+    components: {
+      ValidationProvider,
+      ValidationObserver,
+    },
     data: () => ({
-      valid: false,
       name: '',
-      address: '',
+      phoneNumber: '',
+      email: '',
+      select: null,
       categories: [
         'Restaurant',
         'Bar',
@@ -66,24 +154,21 @@
         'BYOB area',
         'Other'
       ],
-      nameRules: [
-        v => !!v || 'Name is required',
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-      ],
-      addressRules: [
-        v => !!v || 'This field is required',
-        v => !!v && v.length <= 25 || 'Address must be less than 25 characters',
-      ]
+      checkbox: null,
     }),
+
     methods: {
       submit () {
+        this.$refs.observer.validate()
       },
       clear () {
-        this.$refs.form.reset()
+        this.name = ''
+        this.category = null
+        this.address = ''
+        this.website = ''
+        this.phoneNumber = ''
+        this.description = ''
+        this.$refs.observer.reset()
       },
     },
   }
