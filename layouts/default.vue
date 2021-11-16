@@ -52,12 +52,12 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Terrasses',
-          to: '/terrasses',
+          title: 'terraces',
+          to: '/terraces',
         },
         {
           icon: 'mdi-view-dashboard-edit-outline',
-          title: 'My terrasses',
+          title: 'My terraces',
           to: '/dashboard',
         },
         {
@@ -68,7 +68,7 @@ export default {
       ],
       miniVariant: false,
       right: true,
-      title: 'Tokyo terrasses 🗼',
+      title: 'Tokyo terraces 🗼',
     }
   },
 }

@@ -1,9 +1,9 @@
 <template>
     <v-row justify="center" align="center">
-      <v-btn color="prinary" @click="fetchTerrasses"> Fetch terrasses </v-btn>
-      <div v-for="terrasse in terrasses" :key="terrasse.name">
+      <v-btn color="prinary" @click="fetchterraces"> Fetch terraces </v-btn>
+      <div v-for="terrace in terraces" :key="terrace.name">
         <v-col cols="12" sm="12" md="6">
-          <TerrasseCard v-bind="terrasse" />
+          <terraceCard v-bind="terrace" />
         </v-col>
       </div>
     </v-row>

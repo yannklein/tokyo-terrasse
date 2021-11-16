@@ -1,31 +1,30 @@
 const initialState = () => {
   return {
-    terrasses: [],
+    terraces: [],
   }
 }
 
 export const mutations = {
-  setTerrasses(state, terrasses) {
-    state.terrasses = terrasses
+  setTerraces(state, terraces) {
+    state.terraces = terraces
   },
 }
 
 export const actions = {
-  getTerrasses ({commit}) {
-    console.log(this.$fire.firestore.collection('terrasses'))
-    this.$fire.firestore.collection('terrasses')
+  getTerraces ({commit}) {
+    // console.log(this.$fire.firestore.collection('terraces'))
+    this.$fire.firestore.collection('terraces')
       .get()
       .then((querySnapshot) => {
-        const terrasses = []
+        const terraces = []
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           // console.log(doc.id, " => ", doc.data());
-          terrasses.push(doc.data())
-          commit('setTerrasses', terrasses)
+          terraces.push({ id: doc.id, ...doc.data()})
+          commit('setTerraces', terraces)
         });
     })
   },
 }
-
 
 export const state = initialState

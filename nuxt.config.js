@@ -1,11 +1,11 @@
 import colors from 'vuetify/es5/util/colors'
 
-// ajouter seulement `router.base = '/tokyo-terrasses/'` si `DEPLOY_ENV` est `GH_PAGES`
+// ajouter seulement `router.base = '/tokyo-terraces/'` si `DEPLOY_ENV` est `GH_PAGES`
 const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
         router: {
-          base: '/tokyo-terrasses/',
+          base: '/tokyo-terraces/',
         },
       }
     : {}
@@ -18,7 +18,7 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - Right under the rising sun',
-    title: 'Tokyo Terrasses',
+    title: 'Tokyo terraces',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -93,7 +93,7 @@ export default {
       storageBucket: "tokyo-terrasse.appspot.com",
       messagingSenderId: "599190084579",
       appId: "1:599190084579:web:9f2d7e78784af520bc5ed6",
-      measurementId: "G-TKZTHD6LY1",
+      measurementId: "G-TKZTHD6LY1"
     },
     services: {
       auth: {
