@@ -1,11 +1,11 @@
 import colors from 'vuetify/es5/util/colors'
 
-// ajouter seulement `router.base = '/Spaceship/'` si `DEPLOY_ENV` est `GH_PAGES`
+// ajouter seulement `router.base = '/tokyo-terrasses/'` si `DEPLOY_ENV` est `GH_PAGES`
 const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
         router: {
-          base: '/Spaceship/',
+          base: '/tokyo-terrasses/',
         },
       }
     : {}
@@ -17,8 +17,8 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - Spaceship',
-    title: 'Spaceship',
+    titleTemplate: '%s - Right under the rising sun',
+    title: 'Tokyo Terrasses',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -63,7 +63,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

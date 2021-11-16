@@ -17,13 +17,14 @@ export default {
   },
   computed: {
     terrasses () {
+      fetchTerrasses()
       return this.$store.state.terrasses
     }
   },
   methods: {
     fetchTerrasses() {
       this.$store.dispatch('terrasses/getTerrasses').then(() => {
-        console.log('terrasses fetched')
+        // console.log('terrasses fetched')
       })
     },
   },
