@@ -1,4 +1,5 @@
-function initialState() {
+const initialState = () => {
+  // console.log($fire)
   return {
     authUser: null,
   }
