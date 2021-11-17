@@ -25,7 +25,11 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+      <v-btn 
+        icon 
+        class="d-none d-lg-block"
+        @click.stop="miniVariant = !miniVariant"
+      >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
@@ -36,12 +40,12 @@
         :to="item.to"
         router
         depressed
+        icon
         plain
         exact
+        class="d-lg-none"
       >
-        <v-app-bar-nav-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-app-bar-nav-icon>
+        <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
@@ -60,7 +64,7 @@ export default {
   data() {
     return {
       clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: false,
       items: [
         {
@@ -84,5 +88,18 @@ export default {
       title: 'Tokyo terraces 🗼',
     }
   },
+  computed: {
+    barBtnDisplay () {
+      console.log(this.$vuetify.breakpoint.name)
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return true
+        case 'sm': return true
+        case 'md': return false
+        case 'lg': return false
+        case 'xl': return false
+      }
+      return null;
+    }
+  }
 }
 </script>
