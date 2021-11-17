@@ -30,6 +30,19 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn
+        v-for="(item, i) in items"
+        :key="i"
+        :to="item.to"
+        router
+        depressed
+        plain
+        exact
+      >
+        <v-app-bar-nav-icon>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-app-bar-nav-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
